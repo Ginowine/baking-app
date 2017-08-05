@@ -8,17 +8,28 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import challenge.github.alc.com.bakingapp.R;
 import challenge.github.alc.com.bakingapp.activities.RecipeDetailActivity;
 import challenge.github.alc.com.bakingapp.adapters.RecipeDetailAdapter;
+import challenge.github.alc.com.bakingapp.pojo.Ingredient;
+import challenge.github.alc.com.bakingapp.pojo.Recipe;
 import challenge.github.alc.com.bakingapp.widget.UpdateBakingService;
+
+import static challenge.github.alc.com.bakingapp.activities.RecipeActivity.SELECTED_RECIPES;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class RecipeDetailFragment extends Fragment {
 
+
+    ArrayList<Recipe> recipe;
+    String recipeName;
 
     public RecipeDetailFragment() {
         // Required empty public constructor
@@ -75,6 +86,13 @@ public class RecipeDetailFragment extends Fragment {
 
         return rootView;
 
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle currentState) {
+        super.onSaveInstanceState(currentState);
+        currentState.putParcelableArrayList(SELECTED_RECIPES, recipe);
+        currentState.putString("Title",recipeName);
     }
 
 }
